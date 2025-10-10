@@ -11,11 +11,15 @@
 CONFIG_DIR="./config"
 SCRIPT_NAME=$(basename "$0" .sh)
 CONFIG_FILE="${CONFIG_DIR}/${SCRIPT_NAME}.config"
+LOG_FILE="${CONFIG_DIR}/${SCRIPT_NAME}.log"
 
 # 检查并创建config目录
 if [ ! -d "$CONFIG_DIR" ]; then
     mkdir -p "$CONFIG_DIR"
 fi
+
+# 重定向所有输出到日志文件，同时保留终端输出
+exec > >(tee -a "$LOG_FILE") 2>&1
 
 # 处理-c参数（清空配置目录）
 if [ "$1" = "-c" ]; then
