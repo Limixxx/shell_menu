@@ -64,18 +64,18 @@ while true; do
 done
 
 # 构建最终命令
-docker_cmd="python -m sglang.launch_server ${extra_args[*]}"
+sglang_cmd="python -m sglang.launch_server ${extra_args[*]}"
 
 # 3. 保存命令到配置文件
-echo "$docker_cmd" > "$CONFIG_FILE"
+echo "$sglang_cmd" > "$CONFIG_FILE"
 echo "命令已保存至: $CONFIG_FILE"
-echo "生成的命令: $docker_cmd"
+echo "生成的命令: $sglang_cmd"
 
 # 询问是否执行命令
 read -p "是否立即执行上述命令? [y/n] " execute_now
 if [ "$execute_now" = "y" ] || [ "$execute_now" = "Y" ]; then
-    eval "$docker_cmd"
-    echo "容器启动完成"
+    eval "$sglang_cmd"
+    echo "模型启动完成"
 else
     echo "可稍后通过执行配置文件启动: source $CONFIG_FILE"
 fi
