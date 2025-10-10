@@ -37,7 +37,8 @@ if [ -f "$CONFIG_FILE" ]; then
     read -p "是否使用上述命令配置变量? [y/n] " use_existing
     if [ "$use_existing" = "y" ] || [ "$use_existing" = "Y" ]; then
         # 执行配置文件中的命令
-        eval "$(cat "$CONFIG_FILE")"
+        cat "$CONFIG_FILE" >> ~/.bashrc
+        source ~/.bashrc
         echo "环境变量已配置"
     else
         echo "可稍后通过执行配置文件启动: source $CONFIG_FILE"
@@ -76,8 +77,11 @@ echo "生成的命令: $export_cmd"
 # 询问是否执行命令
 read -p "是否立即执行上述命令? [y/n] " execute_now
 if [ "$execute_now" = "y" ] || [ "$execute_now" = "Y" ]; then
-    eval "$export_cmd"
+    echo "$export_cmd" >> ~/.bashrc
+    source ~/.bashrc
     echo "环境变量配置完成"
 else
     echo "可稍后通过执行配置文件启动: source $CONFIG_FILE"
 fi
+
+
