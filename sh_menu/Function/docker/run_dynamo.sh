@@ -8,7 +8,7 @@
 #########################################################################
 
 # 配置文件相关变量
-CONFIG_DIR="./config"
+CONFIG_DIR="./.config"
 SCRIPT_NAME=$(basename "$0" .sh)
 CONFIG_FILE="${CONFIG_DIR}/${SCRIPT_NAME}.config"
 LOG_FILE="${CONFIG_DIR}/${SCRIPT_NAME}.log"
